@@ -1,0 +1,114 @@
+<footer>
+  <p>{{ section.settings.footer_heading | upcase }}</p>
+
+<p>{{ section.settings.follow_us | upcase }}</p>
+
+  {% for block in section.blocks %}
+    <div class="social-icons" {{ block.shopify_attributes }}>
+      {% case block.type %}
+      {% when 'text' %}
+        <p>{{ block.settings.footer_text }}</p>
+        {% when 'text' %}
+        <a href="{{block.settings.social_media_link}}">{{block.settings.social_media_name}}</a>
+      {% endcase %}
+    </div>
+  {% endfor %}
+
+  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+  <ul>
+    {% for social in social_accounts %}
+    {%- assign social_handle = social | handleize -%}
+    {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+    {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+
+    {% if settings[social_link] != blank %}
+    <li>
+      <a href="{{ settings[social_link] }}"
+        title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+        {% include social_icon %}
+        <span class="icon-fallback-text">{{ social }}</span>
+      </a>
+    </li>
+    {% endif %}
+
+    {% endfor %}
+  </ul>
+
+  {% if section.settings.show_payment_icons %}
+  {% unless shop.enabled_payment_types == empty %}
+  <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
+  <ul class="payment-icons">
+    {% for type in shop.enabled_payment_types %}
+    <li>
+      {{ type | payment_type_svg_tag: class: 'icon' }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endunless %}
+  {% endif %}
+
+  {%- assign footer_linklist = section.settings.footer_linklist -%}
+  {% if linklists[footer_linklist].links.size > 0 %}
+  <ul>
+    {% for link in linklists[footer_linklist].links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_linklist",
+      "label": "First menu",
+      "default": "footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": false
+    },
+      {
+        "type": "text",
+        "id": "follow_us",
+        "label":  "Insert a piece of text" 
+      },
+      {
+        "type": "text",
+        "id": "footer_heading",
+        "label":  "Insert a piece of text" 
+      }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "block text",
+      "settings": [
+    
+        {
+          "type": "text",
+          "id": "footer_text",
+          "label":  "Insert a piece of text" 
+        },
+        {
+          "type": "text",
+          "id": "social_media_text",
+          "label": "Social Media Name" 
+        },
+        {
+          "type": "url",
+          "id": "social_media_link",
+          "label": "Social Media Link" 
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

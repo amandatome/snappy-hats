@@ -1,0 +1,116 @@
+/**
+ * Insert your styles with Liquid below.
+ *
+ * Import additional stylesheets into this sheet using CSS imports:
+ * @import url('./global/form.scss');
+ */
+
+ .cover{
+     object-fit: cover;
+     width: 100%;
+ }
+
+ .col-lg-6 {
+     margin: 0!important;
+     padding: 0!important;
+ }
+
+ .collection-list {
+    position: relative;
+}
+
+.title-overlay{
+    position: absolute;
+    top: 40%!important;
+    left: 30%!important;
+}
+
+.collection-background {
+    background-color: #E8C6A3;
+}
+.card {
+    background: none!important;
+}
+
+.price {
+    background-color: white;
+    width: 35px;
+    margin: 0 auto;
+}
+
+footer{
+    background-color: #4F1715;
+    color: white;
+}
+
+#product {
+    background-color: #E8C6A3;
+}
+
+//Single product page
+.select-dropdown {
+    position: relative;
+    min-width: 200px;
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: block;
+      width: 50%;
+      height: 50px;
+      margin: 5px 0px;
+      padding: 0px 15px;
+      font-size: 16pt;
+      line-height: 1.75;
+      color: #000;
+      background-color: #fff;
+      -ms-word-break: normal;
+      word-break: normal;
+      &::-ms-expand {
+        display: none;
+      }
+    }
+    &::after {
+      content: "\f078";
+      font: normal normal normal 17px FontAwesome;
+      color: #000;
+      right:295px!important;
+      top: 15px;
+      padding: 0 0 2px;
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+   //Will only work with Chrome - find other solution.
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button {  
+     opacity: 1;
+  }  
+  
+  input[type=number] {
+    background-color: #4F1715;
+    width: 15%;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  label[for="Quantity"] {
+    text-transform: uppercase;
+  }
+  .js {
+    display: none;
+  }
+
+  #add{
+      background-color: #4F1715;
+      color: white;
+      text-transform: uppercase;
+      padding: 5px 15px;
+  }
+
+  .money {
+      color: #4F1715!important;
+      font-weight: bold;
+  }

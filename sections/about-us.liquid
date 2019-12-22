@@ -1,0 +1,47 @@
+<section class="about" style="background: {{ section.settings.color_banner_bg }};">
+  <div class='row'>
+    <div class='col-lg-6'>
+      <img class='cover' src="{{ section.settings.about_image | img_url: '735x' }} " alt="{{ section.settings.banner_image.alt }}">
+    </div>
+    <div class='col-lg-6 p-5'>
+      <h2>{{section.settings.about_title | upcase }}</h2>
+      <p> {{ section.settings.about_content }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+        {
+        "id": "about_title",
+        "type": "text",
+        "label": "Insert a title for this page"
+        },
+        {
+        "id": "about_image",
+        "type": "image_picker",
+        "label": "Insert an image for the section"
+        },
+        {
+          "id": "about_content",
+          "type": "textarea",
+          "label": "Insert about content"
+          },
+        {
+          "type": "color",
+          "id": "color_banner_bg",
+          "label": "Background Color",
+          "default": "#ffe2cf"
+        }
+  ],
+  
+   "presets": [
+      {
+        "name": "About",
+        "category": "Custom Content"
+      }
+    ]
+}
+{% endschema %}

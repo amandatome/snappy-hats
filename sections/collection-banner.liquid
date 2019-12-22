@@ -1,0 +1,16 @@
+<section class="collection-banner">
+    <img class='cover' src="{{ section.settings.collection_banner_image | img_url: '735x' }} " alt="{{ section.settings.collection_banner_image.alt }}">
+   </section>
+   
+   {% schema %}
+   {
+     "name": "Collection Banner",
+     "settings": [
+       {
+         "id": "collection_banner_image",
+         "type": "image_picker",
+         "label": "Choose an image"
+       }
+     ]
+   }
+   {% endschema %}

@@ -1,0 +1,18 @@
+<div class='sort'>
+    <select name="sort-by" id="sort-by">
+    {% for option in collection.sort_options %}
+        <option value="{{shop.url}}{{collection.url}}?sort_by={{option.value}}">{{ option.name }}</option>
+    {% endfor%}
+    </select>
+    
+    <input type="hidden" value="">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function(){
+    $("#sort-by").on("change", function(){
+        let value = $(this).val();
+        window.location.href= value;
+    })
+});
+</script>
