@@ -7,37 +7,21 @@ Theme Store required settings
 - Collection
 {%- endcomment -%}
 <section class="collection-list">
-  {% if section.settings.title != blank %}
-  <h2 class="collection-list__title">{{ section.settings.title | escape }}</h2>
-  {% endif %}
 
   {% for block in section.blocks %}
   {%- assign collection = collections[block.settings.collection] -%}
-  <div class='row'>
-    <div class='col-md-12'>
-      <a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
-        {% if collection.image != blank or collection.products.first != blank %}
-        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
-        <div class="collection-list__image">
-          {% if collection.image %}
-          <img class='cover' src='{{ collection.image | img_url: 'medium' }}' />{% endif %}
-        </div>
-        {% elsif collection == empty %}
-        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-        {% endif %}
-      </a>
-        <!-- Title -->
-        <div class='title-overlay'>
-
-          <!-- {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
-          <p id='even'>{{ collection.title | default: default_label }}</p> -->
-            <p>{{block.settings.single_text}}</p>
-            <a href="{{block.settings.link_url}}">See All</a>
+  <div class='jumbotron jumbotron-fluid collection-list-item banner-image d-flex' {{ block.shopify_attributes }} style='background-repeat: no-repeat; background-image: url({{collection.image | img_url: "medium" }}); background-size: cover '>
+    <div class='container text-alignment'>
+       <h2 class='display-4'>{{block.settings.single_text}}</h2>
+     
+     <a class="btn btn-primary btn-lg" href="{{block.settings.link_url}}" role="button">{{block.settings.link_text}}</a>
+     
     </div>
-    {% endfor %}
-  </div>
-  </div>
+
+
+</div>
+{% endfor %}
+  <!--.Jumbotron-->
   {% if section.blocks.size == 0 %}
   {% include 'no-blocks' %}
   {% endif %}
@@ -69,6 +53,11 @@ Theme Store required settings
             "type": "text",
             "id": "single_text",
             "label":  "Insert a piece of text" 
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label":  "Insert text for link" 
           },
           {
             "type": "url",
